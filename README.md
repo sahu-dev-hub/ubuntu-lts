@@ -42,7 +42,7 @@ pkg install git -y
 ```
 
 ```bash
-wget https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Install.sh
+wget https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Install.sh
 ```
 
 ```bash
@@ -50,7 +50,7 @@ bash Install.sh
 ```
 
 ### Agar Aap Ke Termux Me Ubuntu Desktop ke Sath Sahi Se Install Ho Gaya Hai To Niche Link Pe Clic Kar Ke Desktop Start Kar Sakte Ho ..
-- [Desktop Start Karne Ke Liye](https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/GUI_SETUP.md)
+- [Desktop Start Karne Ke Liye](https://github.com/sahu-dev-hub/ubuntu-lts/blob/main/GUI_SETUP.md)
 
 
 
