@@ -243,11 +243,11 @@ EOF
     fi
     
     # Install gimp
-        if ask ${C}"Install VScode?"${W}; then
-        echo -e ${G}"\nInstalling Vscode ...." ${W}
-        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Apps/vscode.sh" $directory silence
-        $login -- /bin/bash vscodefix.sh
-        rm $directory/vscode.sh
+        if ask ${C}"Install gimp?"${W}; then
+        echo -e ${G}"\nInstalling GIMP (Photo Editor) ...." ${W}
+        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Apps/gimp.sh" $directory silence
+        $login -- /bin/bash gimp.sh
+        rm $directory/gimp.sh
     else 
         echo -e ${G}"\nNot installing , skip process..\n" ${W}
         sleep 1
@@ -287,6 +287,7 @@ finish () {
     echo ""
     echo " vncstop           To stop vncserver (In Ubuntu)"
     echo ""     
+    echo ${C}"Termux-X11 SetUp Ke Liye GitHub Me Process Bataya Gaya Hai"
     }
     echo ${Y}"Notice : You cannot install it by proot-distro after removing it."
 }
