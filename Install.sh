@@ -64,7 +64,7 @@ requirements() {
 
     # Download scripts for ubuntu noble (if not existed)
     if [[ ! -f "$PREFIX/etc/proot-distro/$ds_name.sh" ]]; then
-        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/ubuntu-lts.sh" "$PREFIX/etc/proot-distro/" silence
+        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/ubuntu.sh" "$PREFIX/etc/proot-distro/" silence
     fi
 
     [[ -d "$PD/$ds_name" ]] && {
@@ -173,14 +173,14 @@ install_desktop() {
 # Different mode to download different scripts
 xfce_mode() {
     echo ${G}"Installing XFCE Desktop..."${W}
-    download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Desktop/xfce.sh" $directory silence
+    download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Desktop/xfce.sh" $directory silence
     $login -- /bin/bash xfce.sh
     rm -rf $directory/xfce.sh
 }
 
 cinnamon_mode() {
     echo ${G}"Installing Cinnamon Desktop..."${W}
-    download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Desktop/cinnamon.sh" $directory silence
+    download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Desktop/cinnamon.sh" $directory silence
     $login -- /bin/bash cinnamon.sh
     rm -rf $directory/cinnamon.sh
 }
@@ -192,7 +192,7 @@ apps() {
     # Install firefox
     if ask ${C}"Install Firefox Web Broswer?"${W}; then
         echo -e ${G}"\nInstalling Firefox Broswer ...." ${W}
-        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Apps/firefox.sh" $directory silence
+        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Apps/firefox.sh" $directory silence
         [[ -f $directory/.bashrc ]] && mv $directory/.bashrc $directory/.bak
         cat > $directory/.bashrc <<- EOF
         bash firefox.sh 
@@ -222,7 +222,7 @@ EOF
     # Install discord(webcord)
     if ask ${C}"Install Discord (Webcord)?"${W}; then
         echo -e ${G}"\nInstalling Discord ...." ${W}
-        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Apps/webcord.sh" $directory silence
+        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Apps/webcord.sh" $directory silence
         $login -- /bin/bash webcord.sh
         rm $directory/webcord.sh
         clear
@@ -234,13 +234,25 @@ EOF
     # Install VScode
     if ask ${C}"Install VScode?"${W}; then
         echo -e ${G}"\nInstalling Vscode ...." ${W}
-        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Apps/vscodefix.sh" $directory silence
+        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Apps/vscode.sh" $directory silence
         $login -- /bin/bash vscodefix.sh
         rm $directory/vscode.sh
     else 
         echo -e ${G}"\nNot installing , skip process..\n" ${W}
         sleep 1
     fi
+    
+    # Install gimp
+        if ask ${C}"Install VScode?"${W}; then
+        echo -e ${G}"\nInstalling Vscode ...." ${W}
+        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Apps/vscode.sh" $directory silence
+        $login -- /bin/bash vscodefix.sh
+        rm $directory/vscode.sh
+    else 
+        echo -e ${G}"\nNot installing , skip process..\n" ${W}
+        sleep 1
+    fi
+    
     clear 
 }
 
