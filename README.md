@@ -42,11 +42,11 @@ pkg install git -y
 ```
 
 ```bash
-wget https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Install.sh
+wget https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/install.sh
 ```
 
 ```bash
-bash Install.sh 
+bash install.sh 
 ```
 
 ### Agar Aap Ke Termux Me Ubuntu Desktop ke Sath Sahi Se Install Ho Gaya Hai To Niche Link Pe Clic Kar Ke Desktop Start Kar Sakte Ho ..
