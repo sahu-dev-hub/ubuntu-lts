@@ -43,7 +43,7 @@ download_script() {
 setup_zsh() {
     echo ${G}"Step 1: ZSH install aur setup ho raha hai, thoda wait karo..."${W}
     # ye zsh_setup.sh link hai
-    download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/zsh_setup.sh" "$HOME" silence
+    download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Setups/zsh_setup.sh" "$HOME" silence
     bash "$HOME/zsh_setup.sh"
     rm "$HOME/zsh_setup.sh"
     sleep 1
@@ -66,7 +66,7 @@ requirements() {
     echo
 
     if [[ ! -f "$PREFIX/etc/proot-distro/$ds_name.sh" ]]; then
-        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/ubuntu-lts.sh" "$PREFIX/etc/proot-distro/" silence
+        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/ubuntu-lts.sh" "$PREFIX/etc/proot-distro/" silence
     fi
 
     [[ -d "$PD/$ds_name" ]] && {
@@ -170,14 +170,14 @@ install_desktop() {
 
 xfce_mode() {
     echo ${G}"XFCE Desktop install ho raha hai..."${W}
-    download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Desktop/xfce.sh" $directory silence
+    download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Desktop/xfce.sh" $directory silence
     $login -- /bin/zsh xfce.sh
     rm -rf $directory/xfce.sh
 }
 
 mate_mode() {
     echo ${G}"Mate Desktop install ho raha hai..."${W}
-    download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Desktop/mate.sh" $directory silence
+    download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Desktop/mate.sh" $directory silence
     $login -- /bin/zsh mate.sh
     rm -rf $directory/mate.sh
 }
@@ -187,7 +187,7 @@ apps() {
     clear
     if ask ${C}"Firefox Web Browser install karna hai?"${W}; then
         echo -e ${G}"\nFirefox Browser install ho raha hai ...." ${W}
-        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Apps/firefox.sh" $directory silence
+        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Setups/firefox.sh" $directory silence
         [[ -f $directory/.zshrc ]] && mv $directory/.zshrc $directory/.zbak
         cat > $directory/.zshrc <<- EOF
         zsh firefox.sh 
@@ -219,7 +219,7 @@ EOF
 
     if ask ${C}"Discord (Webcord) install karna hai?"${W}; then
         echo -e ${G}"\nDiscord install ho raha hai ...." ${W}
-        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Apps/webcord.sh" $directory silence
+        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Setups/webcord.sh" $directory silence
         $login -- /bin/zsh webcord.sh
         rm $directory/webcord.sh
 
@@ -233,7 +233,7 @@ EOF
 
     if ask ${C}"Gimp (Photo editor) install karna hai?"${W}; then
         echo -e ${G}"\nGimp install ho raha hai ...." ${W}
-        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Apps/webcord.sh" $directory silence
+        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Setups/gimp.sh" $directory silence
         $login -- /bin/zsh gimp.sh
         rm $directory/gimp.sh
 
@@ -247,7 +247,7 @@ EOF
 
     if ask ${C}"VScode install karna hai?"${W}; then
         echo -e ${G}"\nVScode install ho raha hai ...." ${W}
-        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Apps/vscodefix.sh" $directory silence
+        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Setups/vscode.sh" $directory silence
         $login -- /bin/zsh vscode.sh
         rm $directory/vscode.sh
 
