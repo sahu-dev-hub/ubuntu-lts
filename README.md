@@ -3,7 +3,7 @@
 <p>Is Script Se Aap Ubuntu-lts 24.04 stable Install Kar Sakte Hai <b>XFCE</b> Our <b>MATE</b> Desktop Ke Sath . </p>
 
 
-### UPDATE : 22/04/2026
+### UPDATE : 24/04/2026
 
 
 ### Desktops :
