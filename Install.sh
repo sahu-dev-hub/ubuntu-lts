@@ -13,7 +13,6 @@ W="$(printf '\033[1;37m')"
 C="$(printf '\033[1;36m')"
 
 ## ask() - prompt the user with a message and wait for a Y/N answer
-## copied from udroid 
 ask() {
     local msg=$*
 
@@ -47,12 +46,12 @@ download_script() {
 
 # Install proot-distro
 requirements() {
-    echo ${C}"installing ubuntu in proot-distro"
+    echo ${G}"This is a script to install ubuntu in proot-distro"
     sleep 1 
     echo ${G}"Installing required packages..."${W}
-    pkg install pulseaudio proot-distro wget  -y
+    pkg install pulseaudio proot-distro wget -y
     [[ ! -d "$HOME/storage" ]] && {
-        echo ${Y}"Please allow storage permission"${W}
+        echo ${C}"Please allow storage permission"${W}
         termux-setup-storage
     }
     [[ ! -d "$PREFIX/var/lib/proot-distro" ]] && {
@@ -61,10 +60,9 @@ requirements() {
     }
     echo
 
-
     # Download scripts for ubuntu noble (if not existed)
     if [[ ! -f "$PREFIX/etc/proot-distro/$ds_name.sh" ]]; then
-        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/ubuntu.sh" "$PREFIX/etc/proot-distro/" silence
+        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/ubuntu-lts.sh" "$PREFIX/etc/proot-distro/" silence
     fi
 
     [[ -d "$PD/$ds_name" ]] && {
@@ -79,14 +77,14 @@ requirements() {
     }
 }
 
-# Pick desktop
+# Pick desktop (Modified: Only XFCE and LXQT)
 choose_desktop() {
     clear
     echo ${C}"Please choose your desktop"${Y}
-    echo " 1) XFCE "
-    echo " 2) Cinnamon "
-    echo ${G}"Please enter number 1 or 2 to choose your desktop "
-    echo ${Y}"If you don't want a desktop please just enter '${W}CLI${C}'"${W}
+    echo " 1) XFCE (Light Weight)"
+    echo " 2) LXQT (Fast & Energy Saving)"
+    echo ${C}"Please enter number 1-2 to choose your desktop "
+    echo ${C}"If you don't want a desktop please just enter '${W}CLI${C}'"${W}
     read desktop
     sleep 1
     case $desktop in
@@ -99,7 +97,7 @@ choose_desktop() {
 # Install and Setup ubuntu 
 configures() {
     proot-distro install ubuntu-lts
-    echo ${Y}"Installing requirement packages in ubuntu..."${W}
+    echo ${G}"Installing requirements in ubuntu..."${W}
     cat > $PD/$ds_name/root/.bashrc <<- EOF
     apt-get update
     apt-get upgrade -y
@@ -155,44 +153,42 @@ EOF
     fi 
 }
 
-# install specific desktop
+# install specific desktop (Modified for XFCE and LXQT)
 install_desktop() {
     desk=true
     case $desktop in
         1) xfce_mode ;;
-        2) cinnamon_mode ;;
-        *) echo ${Y}"No desktop selected , skipping ...." ; desk=false ; sleep 2 ;;
+        2) lxqt_mode ;;
+        *) echo ${G}"No desktop selected , skipping ...." ; desk=false ; sleep 2 ;;
     esac
     
-    # if desktop is installed, also install external apps
     if $desk ; then 
         apps
     fi
 }
 
-# Different mode to download different scripts
 xfce_mode() {
     echo ${G}"Installing XFCE Desktop..."${W}
-    download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Desktop/xfce.sh" $directory silence
+    download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Desktop/xfce.sh" $directory silence
     $login -- /bin/bash xfce.sh
     rm -rf $directory/xfce.sh
 }
 
-cinnamon_mode() {
-    echo ${G}"Installing Cinnamon Desktop..."${W}
-    download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Desktop/cinnamon.sh" $directory silence
-    $login -- /bin/bash cinnamon.sh
-    rm -rf $directory/cinnamon.sh
+lxqt_mode() {
+    echo ${G}"Installing LXQT Desktop..."${W}
+    # Yahan tumhari banayi hui lxqt.sh file download hogi
+    download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Desktop/lxqt.sh" $directory silence
+    $login -- /bin/bash lxqt.sh
+    rm -rf $directory/lxqt.sh
 }
 
 # Install external apps
 apps() {
     clear
-
-    # Install firefox
+    # Firefox
     if ask ${C}"Install Firefox Web Broswer?"${W}; then
         echo -e ${G}"\nInstalling Firefox Broswer ...." ${W}
-        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Apps/firefox.sh" $directory silence
+        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Apps/firefox.sh" $directory silence
         [[ -f $directory/.bashrc ]] && mv $directory/.bashrc $directory/.bak
         cat > $directory/.bashrc <<- EOF
         bash firefox.sh 
@@ -214,62 +210,41 @@ EOF
         mv $directory/.bak $directory/.bashrc
         clear
         sleep 1
-    else 
-        echo -e ${G}"\nNot installing , skip process..\n"${W}
-        sleep 1
     fi
 
-    # Install discord(webcord)
+    # Discord
     if ask ${C}"Install Discord (Webcord)?"${W}; then
         echo -e ${G}"\nInstalling Discord ...." ${W}
-        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Apps/webcord.sh" $directory silence
+        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Apps/webcord.sh" $directory silence
         $login -- /bin/bash webcord.sh
         rm $directory/webcord.sh
         clear
-    else 
-        echo -e ${G}"\nNot installing , skip process..\n" ${W}
-        sleep 1
     fi
 
-    # Install VScode
+    # VScode
     if ask ${C}"Install VScode?"${W}; then
         echo -e ${G}"\nInstalling Vscode ...." ${W}
-        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Apps/vscode.sh" $directory silence
+        download_script "https://raw.githubusercontent.com/23xvx/Termux-Ubuntu-Installer/main/Apps/vscodefix.sh" $directory silence
         $login -- /bin/bash vscodefix.sh
-        rm $directory/vscode.sh
-    else 
-        echo -e ${G}"\nNot installing , skip process..\n" ${W}
-        sleep 1
+        rm $directory/vscodefix.sh
     fi
-    
-    # Install gimp
-        if ask ${C}"Install gimp?"${W}; then
-        echo -e ${G}"\nInstalling GIMP (Photo Editor) ...." ${W}
-        download_script "https://raw.githubusercontent.com/sahu-dev-hub/ubuntu-lts/refs/heads/main/Apps/gimp.sh" $directory silence
-        $login -- /bin/bash gimp.sh
-        rm $directory/gimp.sh
-    else 
-        echo -e ${G}"\nNot installing , skip process..\n" ${W}
-        sleep 1
-    fi
-    
     clear 
 }
 
 # Write startup scripts
 fixes() {
-    [[ -f $PREFIX/bin/ubuntu ]] && rm $PREFIX/bin/ubuntu
+    [[ -f $PREFIX/bin/start-ubuntu ]] && rm $PREFIX/bin/start-ubuntu
     echo "pulseaudio \
         --start --load='module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1'  \
-        --exit-idle-time=-1" >> $PREFIX/bin/ubuntu 
+        --exit-idle-time=-1" >> $PREFIX/bin/start-ubuntu 
     if [[ -z $username ]]; then
-        echo "proot-distro login ubuntu-lts --shared-tmp" >> $PREFIX/bin/ubuntu 
+        echo "proot-distro login ubuntu-lts --shared-tmp" >> $PREFIX/bin/start-ubuntu 
     else
-        echo "proot-distro login ubuntu-lts --shared-tmp --user $username" >> $PREFIX/bin/ubuntu
+        echo "proot-distro login ubuntu-lts --shared-tmp --user $username" >> $PREFIX/bin/start-ubuntu
     fi
-    chmod +x $PREFIX/bin/ubuntu
-    [[ ! -f "$directory/.bashrc " ]] && {
-        cp $directory/etc/skel/.bashrc $directory
+    chmod +x $PREFIX/bin/start-ubuntu
+    [[ ! -f "$directory/.bashrc" ]] && {
+        cp $PD/$ds_name/etc/skel/.bashrc $directory/
     }
     echo "export PULSE_SERVER=127.0.0.1" >> $directory/.bashrc
 }
@@ -278,16 +253,8 @@ fixes() {
 finish () {
     clear
     sleep 2
-    echo ${G}"Installation Complete"
-    echo ""
-    echo " Run ,ubuntu,      To Start Ubuntu  "
-    echo ""
-    [[ $desk == "true" ]] && {
-    echo " vncstart          To start vncserver (In Ubuntu)"
-    echo ""
-    echo " vncstop           To stop vncserver (In Ubuntu)"
+    echo ${G}"          Installation Complete"
     echo ""     
-    echo ${C}"Termux-X11 SetUp Ke Liye GitHub Me Process Bataya Gaya Hai"
     }
     echo ${Y}"Notice : You cannot install it by proot-distro after removing it."
 }
