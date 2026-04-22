@@ -213,7 +213,7 @@ EOF
     else 
         echo -e ${Y}"\nThik hai bhai, skip kar diya..\n" ${W}
         sleep 1
-    fi
+    
 
     fi
 
