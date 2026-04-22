@@ -1,6 +1,6 @@
 ### Ubuntu-lts 24.04 Install
 
-<p>Is Script Se Aap Ubuntu-lts 24.04 stable Install Kar Sakte Hai <b>XFCE</b> Our <b>CINNEMON</b> Desktop Ke Sath . </p>
+<p>Is Script Se Aap Ubuntu-lts 24.04 stable Install Kar Sakte Hai <b>XFCE</b> Our <b>MATE</b> Desktop Ke Sath . </p>
 
 
 ### UPDATE : 22/04/2026
