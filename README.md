@@ -1,4 +1,4 @@
-### Ubuntu-lts 24.04 Install
+# how to install ubuntu in texmux
 
 <p>Is Script Se Aap Ubuntu-lts 24.04 stable Install Kar Sakte Hai <b>XFCE</b> Our <b>MATE</b> Desktop Ke Sath . </p>
 
@@ -15,7 +15,7 @@
 
 
 <details></br>
-<summary><b>Cinnamon Desktop</b></summary>
+<summary><b>Mate Desktop</b></summary>
 <p align="center"><img src="./Images/cinnamon.png"></p>
 </details>
 
@@ -51,6 +51,14 @@ bash install.sh
 
 ### Agar Aap Ke Termux Me Ubuntu Desktop ke Sath Sahi Se Install Ho Gaya Hai To Niche Link Pe Clic Kar Ke Desktop Start Kar Sakte Ho ..
 - [Desktop Start Karne Ke Liye](https://github.com/sahu-dev-hub/ubuntu-lts/blob/main/GUI_SETUP.md)
+
+
+**Buy me a coffee🫠? 👇**
+
+<details></br>
+<summary><b>XFCE Desktop</b></summary>
+<p align="center"><img src="./Images/xfce.png"></p>
+</details>
 
 
 
