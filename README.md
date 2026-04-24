@@ -10,13 +10,13 @@
 
 <details></br>
 <summary><b>XFCE Desktop</b></summary>
-<p align="center"><img src="./Images/xfce.png"></p>
+<p align="center"><img src="./images/xfce.jpg"></p>
 </details>
 
 
 <details></br>
 <summary><b>Mate Desktop</b></summary>
-<p align="center"><img src="./Images/cinnamon.png"></p>
+<p align="center"><img src="./images/mate.png"></p>
 </details>
 
 
@@ -56,8 +56,8 @@ bash install.sh
 **Buy me a coffee🫠? 👇**
 
 <details></br>
-<summary><b>XFCE Desktop</b></summary>
-<p align="center"><img src="./Images/xfce.png"></p>
+<summary><b>Scanner</b></summary>
+<p align="center"><img src="./images/scanner.jpg"></p>
 </details>
 
 
